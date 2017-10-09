@@ -1,6 +1,6 @@
 <md-list>
-  <md-list-item *ngFor="let contact of contacts; trackBy: trackByContactId">
+  <a [routerLink]="['/detail', contact.id]" md-list-item *ngFor="let contact of contacts; trackBy: trackByContactId">
     <img md-list-avatar [src]="contact.image" alt="{{ contact.name }}">
     <h3 md-line>{{ contact.name }}</h3>
-  </md-list-item>
+  </a>
 </md-list>

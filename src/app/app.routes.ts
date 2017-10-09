@@ -1,7 +1,11 @@
-import { ContactsListComponent } from './contacts-list/contacts-list.component';
+import { Routes } from '@angular/router';
 
-export const APP_ROUTES = 
+import { ContactsListComponent } from './contacts-list/contacts-list.component';
+import { ContactDetailComponent } from './contact-detail/contact-detail.component';
+
+export const APP_ROUTES : Routes =
 [
+    { path: 'detail/:id', component: ContactDetailComponent},
     { path: 'list', component: ContactsListComponent},
     { path: '', redirectTo: '/list', pathMatch: 'full' }
 ]
