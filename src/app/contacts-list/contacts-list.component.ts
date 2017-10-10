@@ -10,11 +10,12 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./contacts-list.component.css']
 })
 export class ContactsListComponent implements OnInit {
-  contacts : Observable<Array<Contact>>;
+  contacts$ : Observable<Array<Contact>>;
+  searchTerm: string = '';
   
   constructor(private contactsService: ContactsService)
   {
-    this.contacts = contactsService.getContacts();
+    this.contacts$ = contactsService.getContacts();
   }
   
   ngOnInit(): void {
@@ -24,6 +25,11 @@ export class ContactsListComponent implements OnInit {
   trackByContactId(index, contact: Contact)
   {
     return contact.id;
+  }
+
+  search(term: string)
+  {
+    this.contacts$ = this.contactsService.search(term);
   }
 
 }
