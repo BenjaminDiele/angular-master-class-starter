@@ -3,6 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Contact } from '../models/contact';
 import { ContactsService } from '../contacts.service';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+
 
 @Component({
   selector: 'trm-contacts-list',
@@ -10,15 +15,18 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./contacts-list.component.css']
 })
 export class ContactsListComponent implements OnInit {
-  contacts$ : Observable<Array<Contact>>;
-  
+  private contacts$ : Observable<Array<Contact>>;
+  private searchTerm$ : Subject<string> = new Subject<string>();
+
   constructor(private contactsService: ContactsService)
   {
     this.contacts$ = contactsService.getContacts();
   }
   
   ngOnInit(): void {
-      
+    this.searchTerm$.debounceTime(400)
+      .distinctUntilChanged()
+      .subscribe(term => this.search(term));   
   }
 
   trackByContactId(index, contact: Contact)
