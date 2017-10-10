@@ -11,7 +11,6 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ContactsListComponent implements OnInit {
   contacts$ : Observable<Array<Contact>>;
-  searchTerm: string = '';
   
   constructor(private contactsService: ContactsService)
   {
