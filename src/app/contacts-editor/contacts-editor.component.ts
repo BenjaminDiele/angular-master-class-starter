@@ -32,10 +32,16 @@ export class ContactsEditorComponent implements OnInit {
 
   public save(contact: Contact)
   {
-    this.contactsService.updateContact(contact).subscribe(t => t);
+    this.contactsService.updateContact(contact)
+      .subscribe(() => this.goToDetails());
   }
 
   public cancel()
+  {
+    this.goToDetails();
+  }
+
+  private goToDetails()
   {
     this.router.navigate(['../'], {
       relativeTo: this.route
