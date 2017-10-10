@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -11,16 +12,18 @@ import { ContactsService } from './contacts.service';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { APP_ROUTES } from './app.routes';
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
+import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
 
 @NgModule({
-  declarations: [ContactsAppComponent, ContactsListComponent, ContactDetailComponent],
+  declarations: [ContactsAppComponent, ContactsListComponent, ContactDetailComponent, ContactsEditorComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
     RouterModule.forRoot(APP_ROUTES),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   bootstrap: [ContactsAppComponent],
   providers: [

@@ -18,7 +18,7 @@ export class ContactDetailComponent implements OnInit {
     private router: Router,
     private contactsService : ContactsService
   ) {
-    
+    this.contact = <Contact>{ image:'', address: {}};
   }
 
   ngOnInit() {

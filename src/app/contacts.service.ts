@@ -25,4 +25,10 @@ export class ContactsService {
     let url = this.API_ENDPOINT + "/api/contacts/";
     return this.http.get<ContactResponse>(url + id).map((data) => data.item);
   }
+
+  updateContact(contact: Contact): Observable<Contact>
+  {
+    let url = this.API_ENDPOINT + "/api/contacts/" + contact.id;
+    return this.http.put<Contact>(url, contact);
+  }
 }
