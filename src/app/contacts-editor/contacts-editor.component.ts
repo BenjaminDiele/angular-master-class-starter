@@ -35,9 +35,11 @@ export class ContactsEditorComponent implements OnInit {
     this.contactsService.updateContact(contact).subscribe(t => t);
   }
 
-  public cancel(contact: Contact)
+  public cancel()
   {
-    this.router.navigate(['detail', contact.id]);
+    this.router.navigate(['../'], {
+      relativeTo: this.route
+    });
   }
 
 }
