@@ -4,22 +4,14 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 
-import { Contact } from './models/contact';
-import { CONTACT_DATA as CONTACTS } from './data/contact-data';
-
-interface ContactResponse { item : Contact }
-interface ContactsResponse { items: Contact[] }
-
+import { Contact, ContactResponse, ContactsResponse } from './models/contact';
 
 @Injectable()
 export class ContactsService {
   private API_ENDPOINT = "http://localhost:4201";
   private contacts: Array<Contact>;
   
-  constructor(private http : HttpClient) {
-    
-  }
-
+  constructor(private http : HttpClient) { }
 
   getContacts() : Observable<Array<Contact>>
   {
@@ -33,9 +25,7 @@ export class ContactsService {
     let params = new HttpParams();
     params.append("id", id);
 
-    let url = this.API_ENDPOINT + "/api/contact/";
-    return this.http.get<ContactResponse>(url, {
-      params: params
-    }).map((data) => data.item);
+    let url = this.API_ENDPOINT + "/api/contacts/";
+    return this.http.get<ContactResponse>(url + id).map((data) => data.item);
   }
 }

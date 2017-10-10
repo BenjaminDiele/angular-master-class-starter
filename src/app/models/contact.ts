@@ -1,3 +1,6 @@
+export interface ContactResponse { item : Contact }
+export interface ContactsResponse { items: Contact[] }
+
 export interface Address {
   street?: string;
   city?: string;
