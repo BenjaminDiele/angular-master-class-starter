@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Contact } from '../models/contact';
-import { CONTACT_DATA as CONTACTS } from '../data/contact-data';
 import { ContactsService } from '../contacts.service';
 
 @Component({
@@ -10,16 +9,18 @@ import { ContactsService } from '../contacts.service';
   styleUrls: ['./contacts-list.component.css']
 })
 export class ContactsListComponent implements OnInit {
-
-  contacts : Contact[] = CONTACTS;
-
+  contacts : Contact[];
+  
   constructor(private contactsService: ContactsService)
   {
-    this.contactsService = contactsService;
+    contactsService.getContacts()
+    .subscribe(contacts => {
+      this.contacts = contacts
+    });
   }
-
-  ngOnInit() {
-    this.contacts = this.contactsService.getContacts();
+  
+  ngOnInit(): void {
+      
   }
 
   trackByContactId(index, contact: Contact)
