@@ -22,9 +22,6 @@ export class ContactsService {
 
   getContact(id: string): Observable<Contact>
   {
-    let params = new HttpParams();
-    params.append("id", id);
-
     let url = this.API_ENDPOINT + "/api/contacts/";
     return this.http.get<ContactResponse>(url + id).map((data) => data.item);
   }
