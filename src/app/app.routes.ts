@@ -9,5 +9,6 @@ export const APP_ROUTES : Routes =
     { path: 'detail/:id', component: ContactDetailComponent},
     { path: 'detail/:id/edit', component: ContactsEditorComponent},
     { path: 'list', component: ContactsListComponent},
-    { path: '', redirectTo: 'list', pathMatch: 'full' }
+    { path: '', redirectTo: 'list', pathMatch: 'full' },
+    { path: '**', redirectTo: '/' }
 ]
