@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 
@@ -26,7 +27,7 @@ export class ContactsListComponent implements OnInit {
   ngOnInit(): void {
     this.searchTerm$.debounceTime(400)
       .distinctUntilChanged()
-      .subscribe(term => this.search(term));   
+      .switchMap(x => x);
   }
 
   trackByContactId(index, contact: Contact)
