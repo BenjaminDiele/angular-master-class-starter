@@ -8,7 +8,8 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ContactsAppComponent } from './app.component';
-import { ContactsService } from './contacts.service';
+import { ContactsService } from './services/contacts.service';
+import { EventBusService } from './services/eventbus.service';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { APP_ROUTES } from './app.routes';
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
@@ -28,7 +29,8 @@ import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-det
   ],
   bootstrap: [ContactsAppComponent],
   providers: [
-      ContactsService
+      ContactsService,
+      EventBusService
   ]
 })
 export class ContactsModule {

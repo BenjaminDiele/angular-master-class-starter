@@ -2,8 +2,9 @@ import {HttpClient} from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { ContactsService } from '../contacts.service';
+import { ContactsService } from 'app/services/contacts.service';
 import { Contact } from '../models/contact';
+import { EventBusService } from 'app/services/eventbus.service';
 
 @Component({
   selector: 'trm-contacts-editor',
@@ -17,6 +18,7 @@ export class ContactsEditorComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private contactsService : ContactsService,
+    private eventBusService: EventBusService,
     private http: HttpClient
   ) {
     this.contact = <Contact>{ image:'', address: {}};
@@ -26,7 +28,8 @@ export class ContactsEditorComponent implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.contactsService.getContact(id)
     .subscribe(contact => {
-      this.contact = contact
+      this.contact = contact;
+      this.eventBusService.emit('appTitleChange', contact.name);
     });
   }
 
