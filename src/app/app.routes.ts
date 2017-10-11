@@ -1,3 +1,5 @@
+import { AboutComponent } from './about/about.component';
+import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
 import { Routes } from '@angular/router';
 
@@ -7,9 +9,12 @@ import { ContactsDetailViewComponent } from 'app/contacts-detail-view/contacts-d
 
 export const APP_ROUTES : Routes =
 [
-    { path: 'detail/:id', component: ContactsDetailViewComponent},
-    { path: 'detail/:id/edit', component: ContactsEditorComponent},
-    { path: 'list', component: ContactsListComponent},
-    { path: '', redirectTo: 'list', pathMatch: 'full' },
+    { path: '', component: ContactsDashboardComponent, children: [
+        { path: '', redirectTo: 'detail/0', pathMatch: 'full' },
+        { path: 'detail/:id', component: ContactsDetailViewComponent },
+        { path: 'detail/:id/edit', component: ContactsEditorComponent }
+    ] },
+    { path: 'list', component: ContactsListComponent },
+    { path: 'about', component: AboutComponent },
     { path: '**', redirectTo: 'list' }
 ]

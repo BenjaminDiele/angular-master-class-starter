@@ -15,9 +15,11 @@ import { APP_ROUTES } from './app.routes';
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
+import { AboutComponent } from './about/about.component';
+import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
 
 @NgModule({
-  declarations: [ContactsAppComponent, ContactsListComponent, ContactDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent],
+  declarations: [ContactsAppComponent, ContactsListComponent, ContactDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent, AboutComponent, ContactsDashboardComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
