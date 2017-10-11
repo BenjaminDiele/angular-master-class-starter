@@ -14,7 +14,6 @@ export const APP_ROUTES : Routes =
         { path: 'detail/:id', component: ContactsDetailViewComponent },
         { path: 'detail/:id/edit', component: ContactsEditorComponent }
     ] },
-    { path: 'list', component: ContactsListComponent },
     { path: 'about', component: AboutComponent },
     { path: '**', redirectTo: 'list' }
 ]
