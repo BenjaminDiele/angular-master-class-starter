@@ -13,6 +13,7 @@ import { EventBusService } from 'app/services/eventbus.service';
 })
 export class ContactsEditorComponent implements OnInit {
   contact: Contact;
+  closedFromSave: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,6 +42,8 @@ export class ContactsEditorComponent implements OnInit {
 
   public save(contact: Contact)
   {
+    this.closedFromSave = true;
+    
     this.contactsService.updateContact(contact)
       .subscribe(() => this.goToDetails());
   }

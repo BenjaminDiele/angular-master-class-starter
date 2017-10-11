@@ -18,6 +18,14 @@ import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-det
 import { AboutComponent } from './about/about.component';
 import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
 
+export function doConfirm(event)
+{
+  if(!event.closedFromSave) //TODO: This is very dirty
+    return window.confirm('Navigate away without saving?');
+  
+    return true;
+}
+
 @NgModule({
   declarations: [ContactsAppComponent, ContactsListComponent, ContactDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent, AboutComponent, ContactsDashboardComponent],
   imports: [
@@ -32,7 +40,8 @@ import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashbo
   bootstrap: [ContactsAppComponent],
   providers: [
       ContactsService,
-      EventBusService
+      EventBusService,
+      { provide: 'ConfirmNavigationGuard', useValue: doConfirm }
   ]
 })
 export class ContactsModule {

@@ -12,7 +12,11 @@ export const APP_ROUTES : Routes =
     { path: '', component: ContactsDashboardComponent, children: [
         { path: '', redirectTo: 'detail/0', pathMatch: 'full' },
         { path: 'detail/:id', component: ContactsDetailViewComponent },
-        { path: 'detail/:id/edit', component: ContactsEditorComponent }
+        { 
+            path: 'detail/:id/edit',
+            component: ContactsEditorComponent,
+            canDeactivate: ['ConfirmNavigationGuard']
+        }
     ] },
     { path: 'about', component: AboutComponent },
     { path: '**', redirectTo: 'list' }
