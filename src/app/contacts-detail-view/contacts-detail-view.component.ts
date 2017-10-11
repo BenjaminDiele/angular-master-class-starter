@@ -14,10 +14,9 @@ import 'rxjs/add/operator/do';
 })
 export class ContactsDetailViewComponent implements OnInit {
 
-  contact$ : Observable<Contact>;
+  contact : Contact;
 
   constructor(
-    private contactsService: ContactsService,
     private eventBusService: EventBusService,
     private route: ActivatedRoute,
     private router: Router) {
@@ -25,14 +24,12 @@ export class ContactsDetailViewComponent implements OnInit {
     }
 
     ngOnInit() {
-    this.route.params.subscribe(
-      params => {
-        let id = params['id'];
-
-        this.contact$ = this.contactsService.getContact(id)
-        .do<Contact>(contact => this.eventBusService.emit('appTitleChange', contact.name));
-      }
-    );
+      this.route.data
+        .map(data => data['contact'])
+        .subscribe(contact => {
+          this.contact = contact;
+          this.eventBusService.emit('appTitleChange', contact.name)
+        });
   }
 
   navigateToEditor(contact : Contact)

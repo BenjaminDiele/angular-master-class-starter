@@ -17,6 +17,7 @@ import { ContactsEditorComponent } from './contacts-editor/contacts-editor.compo
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
 import { AboutComponent } from './about/about.component';
 import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
+import { ContactsResolver } from 'app/shared/contacts.resolver';
 
 export function doConfirm(event)
 {
@@ -41,7 +42,8 @@ export function doConfirm(event)
   providers: [
       ContactsService,
       EventBusService,
-      { provide: 'ConfirmNavigationGuard', useValue: doConfirm }
+      { provide: 'ConfirmNavigationGuard', useValue: doConfirm },
+      ContactsResolver
   ]
 })
 export class ContactsModule {
